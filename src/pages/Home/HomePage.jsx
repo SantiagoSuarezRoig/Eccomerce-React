@@ -9,11 +9,18 @@ import checkMark from '../../assets/images/icons/checkmark.png'
 export function Homepage(){
 
   const [products, setProducts] = useState([])
+  const [cart,setCart] = useState([])
+
 
   useEffect(()=>{
-    axios('http://localhost:3000/api/products').
+    axios.get('http://localhost:3000/api/products').
     then((response)=>{
       setProducts(response.data)
+    })
+
+    axios.get('http://localhost:3000/api/cart-items').
+    then((response)=>{
+      setCart(response.data)
     })
   },[])
 
@@ -24,7 +31,7 @@ export function Homepage(){
         <title>Ecommerce Project</title> 
         <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
           
-        <Header />
+        <Header cart={cart}/>
 
         <div className="home-page">
           <div className="products-grid">
