@@ -1,3 +1,4 @@
+import axios from 'axios'
 import './HomePage.css'
 import {Header} from '../../components/Header'
 import checkMark from '../../assets/images/icons/checkmark.png'
@@ -5,6 +6,11 @@ import {products} from '../../../starting-code/data/products.js'
 
 
 export function Homepage(){
+    axios('http://localhost:3000/api/products').
+    then((response)=>{
+      console.log(response.data)
+    })
+
     return (
         <>
 
@@ -18,7 +24,7 @@ export function Homepage(){
 
             {products.map((product)=>{
               return( <>
-            <div key = {product.id}className="product-container">
+            <div key = {product.id} className="product-container">
               <div className="product-image-container">
                 <img className="product-image"
                   src={product.image} />
