@@ -6,11 +6,9 @@ import {Header} from '../../components/Header'
 import checkMark from '../../assets/images/icons/checkmark.png'
 
 
-export function Homepage(){
+export function Homepage({cart}){
 
   const [products, setProducts] = useState([])
-  const [cart,setCart] = useState([])
-
 
   useEffect(()=>{
     axios.get('/api/products').
@@ -18,10 +16,6 @@ export function Homepage(){
       setProducts(response.data)
     })
 
-    axios.get('/api/cart-items').
-    then((response)=>{
-      setCart(response.data)
-    })
   },[])
 
 
