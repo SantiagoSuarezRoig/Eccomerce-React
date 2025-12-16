@@ -1,13 +1,12 @@
-import axios from 'axios'
 import './HomePage.css'
-
-import { useEffect, useState } from 'react'
+import { formatMoney } from '../../utils/money'
 import {Header} from '../../components/Header'
 import checkMark from '../../assets/images/icons/checkmark.png'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 
 export function Homepage({cart}){
-
   const [products, setProducts] = useState([])
 
   useEffect(()=>{
@@ -15,7 +14,6 @@ export function Homepage({cart}){
     then((response)=>{
       setProducts(response.data)
     })
-
   },[])
 
 
@@ -51,7 +49,7 @@ export function Homepage({cart}){
               </div>
 
               <div className="product-price">
-                ${(Math.round(product.priceCents)/100).toFixed(2)}
+                {formatMoney(product.priceCents)}
               </div>
 
               <div className="product-quantity-container">
