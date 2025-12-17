@@ -11,18 +11,18 @@ export function Product({product, loadCart}){
 
     const addToCart = async()=>{
         clearTimeout(timeOutAddedCheck)
+        setAddedCheck(1)
+        let timeOut = setTimeout(()=>{
+                    setAddedCheck(0)
+                },2000)
+        setTimeOutAddedCheck(timeOut)
+
+        
         await axios.post('/api/cart-items',{
             productId: product.id,
             quantity
         })
         await loadCart()
-
-        setAddedCheck(1)
-
-        let timeOut = setTimeout(()=>{
-                    setAddedCheck(0)
-                },2000)
-        setTimeOutAddedCheck(timeOut)
     }
 
     const selectQuantity = (event)=>{
