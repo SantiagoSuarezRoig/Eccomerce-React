@@ -1,22 +1,9 @@
 import './HomePage.css'
 import {Header} from '../../components/Header'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
 import { ProductsGrid } from './ProductsGrid'
 
-export function Homepage({cart, loadCart}){
-  const [products, setProducts] = useState([])
 
-  useEffect(()=>{
-    const getProductsData = async () =>{
-      const response = await axios.get('/api/products')
-      setProducts(response.data)
-    }
-
-    getProductsData()
-  },[])
-
-
+export function Homepage({cart, loadCart, products}){
     return (
         <>
 
@@ -27,7 +14,6 @@ export function Homepage({cart, loadCart}){
 
         <div className="home-page">
           <ProductsGrid products={products} loadCart={loadCart} />
-          
         </div>
         
         </>
